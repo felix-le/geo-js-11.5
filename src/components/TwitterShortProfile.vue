@@ -4,6 +4,11 @@ export default {
   props: {
     superhero: Object,
   },
+  methods: {
+    isFollowing(hero) {
+      this.$set(hero, 'isFollowing', !hero.isFollowing);
+    },
+  },
 };
 </script>
 
@@ -20,12 +25,12 @@ export default {
       <h2 class="f6 fw4 mt0 mb0 black-60">{{ superhero.twitter }}</h2>
     </div>
     <div class="dtc v-mid">
-      <form class="w-100 tr">
+      <form class="w-100 tr" @submit.prevent="isFollowing(superhero)">
         <button
           class="f6 button-reset bg-white ba b--black-10 dim pointer pv1 black-60"
           type="submit"
         >
-          + Follow
+          {{ superhero.isFollowing ? '- Unfollow' : '+ Follow' }}
         </button>
       </form>
     </div>
